@@ -1,5 +1,8 @@
 name: ci-java-workflow
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - develop
 jobs:
   check-application:
     runs-on: ubuntu-latest
@@ -9,5 +12,5 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-      - run: mvn clean -U
-      - run: mvn install
+      - name: instalando as dependëncias e rodando a app
+        run: mvn clean install && mvn spring-boot:run
